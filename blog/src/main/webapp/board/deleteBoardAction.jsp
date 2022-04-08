@@ -4,7 +4,7 @@
 <%
 	//값 가져오기, 숫자형 문자열은 정수(10진수)로 반환
 	int boardNo = Integer.parseInt(request.getParameter("boardNo")); // 게시물 번호
-	String boardPw = request.getParameter("boardPw"); //비밀번호
+	String boardPw = request.getParameter("boardPw"); 
 	
 	//보드에 객체생성
 	Board board = new Board(); 
