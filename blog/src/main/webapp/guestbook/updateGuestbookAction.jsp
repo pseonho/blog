@@ -17,10 +17,9 @@
 	
 	//Guestbook에 요청값 묶기
 	Guestbook guestbook = new Guestbook();
-	guestbook.guestbookNo = guestbookNo;
-	guestbook.writer = writer;
-	guestbook.guestbookContent = guestbookContent;
-	guestbook.guestbookPw = guestbookPw;
+	guestbook.setGuestbookNo(Integer.parseInt(request.getParameter("guestbookNo")));
+	guestbook.setGuestbookContent(request.getParameter("guestbookContent"));
+	guestbook.setGuestbookPw(request.getParameter("guestbookPw"));
 	
 	GuestbookDao guestbookDao = new GuestbookDao();
 	int row = guestbookDao.updateGuestbook(guestbook);
