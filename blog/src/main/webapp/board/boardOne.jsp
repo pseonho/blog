@@ -2,6 +2,7 @@
 <%@ page import = "java.sql.*" %>
 <%@ page import = "java.util.*" %>
 <%@ page import = "vo.Board" %>
+<%@ page import = "dao.*" %>
 <%
 	int boardNo = Integer.parseInt(request.getParameter("boardNo")); // boardNo 형변환 후 받아오기
 	System.out.println("boardNo : " + boardNo);
@@ -40,12 +41,12 @@
 	Board board = null; // board_no은 하나이므로
 	while(boardRs.next()) {
 		board = new Board();
-		board.boardNo = boardRs.getInt("boardNo");
-		board.categoryName = boardRs.getString("categoryName");
-		board.boardTitle = boardRs.getString("boardTitle");
-		board.boardContent = boardRs.getString("boardContent");
-		board.createDate = boardRs.getString("createDate");
-		board.updateDate = boardRs.getString("updateDate");
+		board.setBoardNo(boardRs.getInt("boardNo"));
+		board.setCategoryName(boardRs.getString("categoryName"));
+		board.setBoardTitle(boardRs.getString("boardTitle"));
+		board.setBoardContent(boardRs.getString("boardContent"));
+		board.setCreateDate(boardRs.getString("createDate"));
+		board.setUpdateDate(boardRs.getString("updateDate"));
 	}
 	
 	conn.close(); // Connection 사용 후 반납
@@ -80,33 +81,33 @@
 	<table class="table table-sm text-left">
 		<tr>
 			<td>boardNo</td>
-			<td><%=board.boardNo %></td>
+			<td><%=board.getBoardNo() %></td>
 		</tr>
 		<tr>
 			<td>categoryName</td>
-			<td><%=board.categoryName %></td>
+			<td><%=board.getCategoryName() %></td>
 		</tr>
 		<tr>
 			<td>boardTitle</td>
-			<td><%=board.boardTitle %></td>
+			<td><%=board.getBoardTitle() %></td>
 		</tr>
 		<tr>
 			<td>boardContent</td>
-			<td><%=board.boardContent %></td>
+			<td><%=board.getBoardContent() %></td>
 		</tr>
 		<tr>
 			<td>createDate</td>
-			<td><%=board.createDate %></td>
+			<td><%=board.getCreateDate() %></td>
 		</tr>
 		<tr>
 			<td>updateDate</td>
-			<td><%=board.updateDate %></td>
+			<td><%=board.getUpdateDate() %></td>
 		</tr>
 	</table>
 		
 	<div>
-		<a href="<%=request.getContextPath()%>/updateBoardForm.jsp?boardNo=<%= board.boardNo %>">[수정]</a>
-		<a href="<%=request.getContextPath()%>/deleteBoardForm.jsp?boardNo=<%= board.boardNo %>">[삭제]</a>
+		<a href="<%=request.getContextPath()%>/board/updateBoardForm.jsp?boardNo=<%= board.getBoardNo() %>">[수정]</a>
+		<a href="<%=request.getContextPath()%>/board//deleteBoardForm.jsp?boardNo=<%= board.getBoardNo() %>">[삭제]</a>
 	
 
 	</div>

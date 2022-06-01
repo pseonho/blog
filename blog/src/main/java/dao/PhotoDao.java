@@ -35,19 +35,19 @@ public class PhotoDao {
 			"INSERT INTO photo(photo_name, photo_original_name, photo_type, photo_pw, writer, create_date, update_date) VALUES(?,?,?,?,?,NOW(),NOW())";
 		
 		// 데이터 생성
-		String photoName = photo.photoName;
-		String photoOriginalName = photo.photoOriginalName;
-		String photoType = photo.photoType;
-		String photoPw = photo.photoPw;
-		String writer = photo.writer;
+		String photoName = photo.getPhotoName();
+		String photoOriginalName = photo.getPhotoOriginalName();
+		String photoType = photo.getPhotoType();
+		String photoPw = photo.getPhotoPw();
+		String writer = photo.getWriter();
 		
 		// photo 쿼리를 저장
 		stmt = conn.prepareStatement(sql);
-		stmt.setString(1, photo.photoName);
-		stmt.setString(2, photo.photoOriginalName);
-		stmt.setString(3, photo.photoType);
-		stmt.setString(4, photo.photoPw);
-		stmt.setString(5, photo.writer);
+		stmt.setString(1, photo.getPhotoName());
+		stmt.setString(2, photo.getPhotoOriginalName());
+		stmt.setString(3, photo.getPhotoType());
+		stmt.setString(4, photo.getPhotoPw());
+		stmt.setString(5, photo.getWriter());
 		
 		// 쿼리를 실행 후 결과값(테이블모양의 ResultSet타입)을 리턴
 		rs = stmt.executeQuery();
@@ -117,8 +117,8 @@ public class PhotoDao {
 	      rs = stmt.executeQuery();
 	      while(rs.next()) {
 	         Photo p = new Photo();
-	         p.photoNo = rs.getInt("photoNo");
-	         p.photoName = rs.getString("photoName");
+	         p.setPhotoNo(rs.getInt("photoNo"));
+	         p.setPhotoName(rs.getString("photoName"));
 	         list.add(p);
 	      }
 	      return list;
@@ -182,11 +182,11 @@ public class PhotoDao {
 		
 		if(rs.next()) { // 사용자에게 보여줄 정보가 있을때 객체를 이용해 멤버변수에 저장
 			photo = new Photo();
-			photo.photoNo = rs.getInt("photoNo");
-			photo.photoName = rs.getString("photoName");
-			photo.writer = rs.getString("writer");
-			photo.createDate = rs.getString("createDate");
-			photo.updateDate = rs.getString("updateDate");
+			photo.setPhotoNo(rs.getInt("photoNo"));
+			photo.setPhotoName(rs.getString("photoName"));
+			photo.setWriter(rs.getString("writer"));
+			photo.setCreateDate(rs.getString("createDate"));
+			photo.setUpdateDate( rs.getString("updateDate"));
 		}
 		
 		

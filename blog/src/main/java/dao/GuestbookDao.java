@@ -3,14 +3,14 @@ import java.util.ArrayList;
 import vo.Guestbook;
 import java.sql.*;
 public class GuestbookDao {
-	// 생성자 메서드
-	public GuestbookDao() {}
+	public GuestbookDao() {}// 생성자 메서드
 	
 	// 수정(guestbookOne, updateGuestbook) 프로세스 구현
 	
 	// updateGuestbookForm.jsp에서 호출
 	public Guestbook selectGuestbookOne(int guestbookNo) throws Exception {
 		Guestbook guestbook = null;
+		
 		Class.forName("org.mariadb.jdbc.Driver");
 		Connection conn = null;
 		PreparedStatement stmt = null;

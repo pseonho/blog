@@ -15,7 +15,7 @@
 </head>
 <body>
 	<h1 class="table-active">글 입력</h1>
-	<form method="post" action="<%=request.getContextPath()%>/insertBoardAction.jsp">
+	<form method="post" action="<%=request.getContextPath()%>/board/insertBoardAction.jsp">
 	<table class= "table table-hover">
 			<tr>
 				<td>categoryName</td>

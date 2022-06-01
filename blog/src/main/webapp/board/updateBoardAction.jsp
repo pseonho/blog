@@ -22,11 +22,11 @@
 	System.out.println(boardPw+"<--boardPw");
 	
 	// 객체 생성 후 멤버변수에 정보 저장
-		board.boardNo = boardNo;
-		board.categoryName = categoryName;
-		board.boardTitle = boardTitle;
-		board.boardContent = boardContent;
-		board.boardPw = boardPw;
+		board.setBoardNo(Integer.parseInt(request.getParameter("boardNo")));
+		board.setCategoryName(request.getParameter("categoryName"));
+		board.setBoardTitle(request.getParameter("boardTitle"));
+		board.setBoardContent(request.getParameter("boardContent"));
+		board.setBoardPw(request.getParameter("boardPw")) ;
 		
 		int row =  boardDao.updateBoard(board); // 메서드로 실행된 행의 갯수 저장
 		

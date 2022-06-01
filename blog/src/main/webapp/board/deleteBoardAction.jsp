@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "vo.*" %>
+<%@ page import = "java.util.*" %>
+<%@ page import = "dao.*" %>
 <%@ page import = "java.sql.*" %>
 <%
 	//값 가져오기, 숫자형 문자열은 정수(10진수)로 반환
@@ -7,9 +9,9 @@
 	String boardPw = request.getParameter("boardPw"); 
 	
 	//보드에 객체생성
-	Board board = new Board(); 
-	board.boardNo = boardNo; 
-	board.boardPw = boardPw;
+	Board board = null;
+	BoardDao boardDao = new BoardDao(); 	// 넣을 곳에서 deleteBoard메서드에(board) 넣기
+	int row = boardDao.deleteBoard(boardNo, boardPw);
 	
 	//mariadb 드라이버 로딩
 	Class.forName("org.mariadb.jdbc.Driver");
@@ -30,12 +32,11 @@
 	stmt.setString(2, boardPw);
 	
 	//디버깅
-	int row = stmt.executeUpdate(); //몇행인지 리턴
 	if(row == 0){ //삭제실패
-		response.sendRedirect(request.getContextPath()+"/deleteBoardForm.jsp?boardNo=" + board.boardNo);
+		response.sendRedirect(request.getContextPath()+"/board/deleteBoardForm.jsp");
 		System.out.println("삭제 실패");
 	}else if(row == 1){//삭제성공
-		response.sendRedirect("./boardList.jsp");
+		response.sendRedirect(request.getContextPath()+"/board/boardList.jsp");
 		System.out.println("삭제된 행(row):" + row);
 	}else{
 		System.out.println("error");

@@ -12,10 +12,10 @@
 </head>
 <body>	
 	<h1 class=table-active> 삭제</h1>
-	<form action="<%=request.getContextPath()%>/deleteBoardAction.jsp" method="post">
+	<form action="<%=request.getContextPath()%>/board/deleteBoardAction.jsp" method="post">
 	<table class= "table table-hover ">
 			<tr>
-				<td>번호: <input type="text" name="boardNo" value="<%=boardNo%>" readonly="readonly" ></td>
+				<td>번호: <input type="text" name="boardNo" value="<%=boardNo%>" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td>비밀번호: <input type="password" name="boardPw"></td>

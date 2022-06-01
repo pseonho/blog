@@ -5,7 +5,7 @@ public class Photo {
 	public  Photo() {};
 	
 	private int photoNo;
-	private String phoutoName;
+	private String photoName;
 	private String photoOriginalName;
 	private String photoType;
 	private String photoPw;
@@ -20,11 +20,11 @@ public class Photo {
 	public void setPhotoNo(int photoNo) {
 		this.photoNo = photoNo;
 	}
-	public String getPhoutoName() {
-		return phoutoName;
+	public String getPhotoName() {
+		return photoName;
 	}
-	public void setPhoutoName(String phoutoName) {
-		this.phoutoName = phoutoName;
+	public void setPhotoName(String photoName) {
+		this.photoName = photoName;
 	}
 	public String getPhotoOriginalName() {
 		return photoOriginalName;
@@ -64,7 +64,7 @@ public class Photo {
 	}
 	@Override
 	public String toString() {
-		return "Photo [photoNo=" + photoNo + ", phoutoName=" + phoutoName + ", photoOriginalName=" + photoOriginalName
+		return "Photo [photoNo=" + photoNo + ", phoutoName=" + photoName + ", photoOriginalName=" + photoOriginalName
 				+ ", photoType=" + photoType + ", photoPw=" + photoPw + ", writer=" + writer + ", createDate="
 				+ createDate + ", updateDate=" + updateDate + "]";
 	}

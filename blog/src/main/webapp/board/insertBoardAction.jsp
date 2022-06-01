@@ -4,7 +4,7 @@
 <%@ page import = "vo.Board" %>
  <% 
 	request.setCharacterEncoding("utf-8");// 글자 깨지지 않게
- 	response.sendRedirect(request.getContextPath()+"/boardList.jsp");
+ 	response.sendRedirect(request.getContextPath()+"/board/boardList.jsp");
  
  	//insertBoardForm에서 넘긴 것 저장하기
  	String categoryName = request.getParameter("categoryName");
@@ -14,16 +14,16 @@
  	
  	//정보 가공 하나로 묶기
  	Board board = new Board();
- 	board.categoryName = categoryName;
- 	board.boardTitle = boardTitle;
- 	board.boardContent = boardContent;
- 	board.boardPw = boardPw;
+ 	board.setCategoryName(categoryName);
+ 	board.setBoardTitle(boardTitle);
+ 	board.setBoardContent(boardContent);
+ 	board.setBoardPw(boardPw);
  	
  	// 디버깅
- 	System.out.println(board.categoryName + " <-- insertBoardAction categoryName");
- 	System.out.println(board.boardTitle + " <-- insertBoardAction boardTitle");
- 	System.out.println(board.boardContent + " <-- insertBoardAction boardContent");
- 	System.out.println(board.boardPw + " <-- insertBoardAction boardPw");
+ 	System.out.println(categoryName + " <-- insertBoardAction categoryName");
+ 	System.out.println(boardTitle + " <-- insertBoardAction boardTitle");
+ 	System.out.println(boardContent + " <-- insertBoardAction boardContent");
+ 	System.out.println(boardPw + " <-- insertBoardAction boardPw");
  	
 	// maraidb접속
 	Class.forName("org.mariadb.jdbc.Driver");
@@ -50,10 +50,10 @@
 	//categoryName,boardTitle,boardContent,boardPw 저장한 것 사용
 	String sql="insert into board(category_name, board_title, board_content, board_pw, create_date, update_date) values(?,?,?,?,now(),now())";
 	PreparedStatement stmt = conn.prepareStatement(sql);
-	stmt.setString(1,board.categoryName);
-	stmt.setString(2,board.boardTitle);//제목
-	stmt.setString(3,board.boardContent);//내용
-	stmt.setString(4,board.boardPw);//비밀번호
+	stmt.setString(1,board.getCategoryName());
+	stmt.setString(2,board.getBoardTitle());//제목
+	stmt.setString(3,board.getBoardContent());//내용
+	stmt.setString(4,board.getBoardPw());//비밀번호
 	
 	// 디버깅
 	System.out.println(stmt + " <-- insertBoardAction stmt");

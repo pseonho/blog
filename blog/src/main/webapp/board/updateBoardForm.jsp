@@ -7,11 +7,12 @@
 	Class.forName("org.mariadb.jdbc.Driver");
 	System.out.println("드라이버 로딩 성공");
 		
+	String categoryName = request.getParameter("categoryName");
 	BoardDao boardDao = new BoardDao(); // 메서드를 사용할 객체 생성
 	Board board = boardDao.selectBoardOne(boardNo); // 메서드 사용 후 Board객체에 저장
-	System.out.println("board.categoryName : " + board.categoryName); // 디버깅
+	System.out.println("updateBoardForm_boardNo" + boardNo); // 디버깅
 
-	ArrayList<String> categoryList = boardDao.selectCategory(board.categoryName); // 카테고리 이름들을 select하는 메서드 실행 후 ArrayList에 저장
+	ArrayList<String> categoryList = boardDao.selectCategory(categoryName); // 카테고리 이름들을 select하는 메서드 실행 후 ArrayList에 저장
 	
 	for(String s : categoryList) {
 		System.out.println(s);
@@ -30,7 +31,7 @@
 	<table class= "table table-hover ">
 			<tr>
 				<td>boardNo</td>
-				<td><input type="text" name="boardNo" value="<%=board.boardNo%>" readonly="readonly"></td>
+				<td><input type="text" name="boardNo" value="<%=board.getBoardNo()%>" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td>categoryName</td>
@@ -38,7 +39,7 @@
 					<select name="categoryName">
 						<%
 							for(String s : categoryList) {
-								if(s.equals(board.categoryName)) {
+								if(s.equals(board.getCategoryName())) {
 						%>
 									<option selected="selected" value="<%=s%>"><%=s%></option>
 						<%
@@ -54,13 +55,11 @@
 			</tr>
 			<tr>
 				<td>boardTitle</td>
-				<td><input type="text" name="boardTitle" value="<%=board.boardTitle%>"></td>
+				<td><input type="text" name="boardTitle" value="<%=board.getBoardTitle()%>"></td>
 			</tr>
 			<tr>
 				<td>boardContent</td>
-				<td>
-					<textarea rows="5" cols="50" name="boardContent"><%=board.boardContent%></textarea>
-				</td>
+				<td><textarea rows="5" cols="50" name="boardContent" value="<%=board.getBoardContent()%>"></textarea></td>
 			<tr>	
 				<td>boardPw</td>
 				<td><input type="password" name="boardPw" value=""></td>

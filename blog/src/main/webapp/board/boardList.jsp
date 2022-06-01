@@ -29,6 +29,7 @@
 		? <-- (currentPage-1)*10
 	*/
 	int rowPerPage = 10; // 내가 보고싶은 페이지의 갯수
+	
 	int beginRow = (currentPage-1) * rowPerPage; // 페이지 알고리즘 -> 1page : LIMIT 0, 10 2page : LIMIT 10, 10 ...
 	
 	ArrayList<HashMap<String, Object>> categoryList = boardDao.boardListByCategoryPage(categoryName); // 카테고리별 목록을 보여주는 메서드를 이용해 ArrayList<HashMap<String, Object>>에 저장
@@ -104,9 +105,9 @@
 				for(Board b : list) {
 			%>
 					<tr>
-						<td><%=b.categoryName%></td>
-						<td><a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=b.boardNo%>"><%=b.boardTitle%></a></td>
-						<td><%=b.createDate%></td>
+						<td><%=b.getCategoryName()%></td>
+						<td><a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=b.getBoardNo()%>"><%=b.getBoardTitle()%></a></td>
+						<td><%=b.getCreateDate()%></td>
 					</tr>
 			<%		
 				}

@@ -13,7 +13,6 @@ import org.eclipse.jdt.internal.compiler.ast.RequiresStatement;
 
 import vo.Board;
 import vo.Photo;
-
 public class BoardDao {
 	public BoardDao() {} // 생성자메서드
 	
@@ -21,9 +20,8 @@ public class BoardDao {
 	public ArrayList<Board> selectBoardListByPage(int beginRow, int rowPerPage, String categoryName) throws Exception {
 		ArrayList<Board> list = new ArrayList<Board>(); // 객체에 저장한 정보를 ArrayList형식으로 저장할 변수 선언
 		
-		Class.forName("org.mariadb.jdbc.Driver");
-		
 		// 데이터베이스 자원 준비
+		Class.forName("org.mariadb.jdbc.Driver");
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -32,12 +30,10 @@ public class BoardDao {
 		String dbuser = "root"; // DB 아이디
 		String dbpw = "java1234"; // DB 패스워드
 		String sql = null;
-		
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw); // DB 접속
 		
 		
 		String boardSql = null;
-		
 		if(categoryName == null) { // 사용자가 아직 카테고리를 선택하지 않았을때
 			// 카테고리에 상관없이 출력하는 쿼리
 			sql = "SELECT board_no boardNo, category_name categoryName, board_title boardTitle, create_date createDate FROM board ORDER BY create_date DESC LIMIT ?, ?";
@@ -59,10 +55,10 @@ public class BoardDao {
 		
 		while(rs.next()) { // 객체를 이용해 멤버변수에 정보 저장
 			Board board = new Board();
-			board.boardNo = rs.getInt("boardNo");
-			board.categoryName = rs.getString("categoryName");
-			board.boardTitle = rs.getString("boardTitle");
-			board.createDate = rs.getString("createDate");
+			board.setBoardNo(rs.getInt("boardNo"));
+			board.setCategoryName(rs.getString("categoryName"));
+			board.setBoardTitle( rs.getString("boardTitle"));
+			board.setCreateDate ( rs.getString("createDate"));
 			list.add(board); // 리스트에 저장
 		}
 		
@@ -73,6 +69,7 @@ public class BoardDao {
 		
 		return list;
 	}
+	
 	
 	// 카테고리를 선택했을때 카테고리별로 정보를 리스트형식으로 출력하는 메서드
 	public ArrayList<HashMap<String, Object>> boardListByCategoryPage(String categoryName) throws Exception {
@@ -137,12 +134,12 @@ public class BoardDao {
 		if(rs.next()) { // 데이터가 있으면
 			board = new Board(); // 객체 생성
 			// 객체를 이용해 각 멤버변수에 정보 저장
-			board.boardNo = rs.getInt("boardNo");
-			board.categoryName = rs.getString("categoryName");
-			board.boardTitle = rs.getString("boardTitle");
-			board.boardContent = rs.getString("boardContent");
-			board.createDate = rs.getString("createDate");
-			board.updateDate = rs.getString("updateDate");
+			board.setBoardNo(rs.getInt("boardNo"));
+			board.setCategoryName(rs.getString("categoryName"));
+			board.setBoardTitle(rs.getString("boardTitle"));
+			board.setBoardContent (rs.getString("boardContent"));
+			board.setCreateDate (rs.getString("createDate"));
+			board.setUpdateDate (rs.getString("updateDate"));
 		}
 		
 		// 반납
@@ -170,21 +167,21 @@ public class BoardDao {
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw); // DB 접속
 		stmt = conn.prepareStatement(sql); // 쿼리 작성
 		// ?에 각 값들 넣어두기
-		stmt.setString(1, board.categoryName);
-		stmt.setString(2, board.boardTitle);
-		stmt.setString(3, board.boardContent);
-		stmt.setString(4, board.boardPw);
+		stmt.setString(1, board.getCategoryName());
+		stmt.setString(2, board.getBoardTitle());
+		stmt.setString(3, board.getBoardContent());
+		stmt.setString(4, board.getBoardPw());
 		System.out.println("insertBoardSql : " + stmt); // 디버깅
 		
 		rs = stmt.executeQuery(); // 쿼리 저장
 		
 		if(rs.next()) { // 객체에 쿼리의 정보들 받아서 저장
-			board.categoryName = rs.getString("category_name");
-			board.boardTitle = rs.getString("board_title");
-			board.boardContent = rs.getString("board_content");
-			board.boardPw = rs.getString("board_pw");
-			board.createDate = rs.getString("create_date");
-			board.updateDate = rs.getString("update_date");
+			board.setCategoryName(rs.getString("category_name"));
+			board.setBoardTitle (rs.getString("board_title"));
+			board.setBoardContent( rs.getString("board_content"));
+			board.setBoardPw (rs.getString("board_pw"));
+			board.setCreateDate(rs.getString("create_date"));
+			board.setUpdateDate (rs.getString("update_date"));
 		}
 		
 		// 반납
@@ -241,11 +238,11 @@ public class BoardDao {
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw); // DB 접속
 		stmt = conn.prepareStatement(sql); // 쿼리 작성
 		// ?에 각각 값 저장
-		stmt.setString(1, board.categoryName);
-		stmt.setString(2, board.boardTitle);
-		stmt.setString(3, board.boardContent);
-		stmt.setInt(4, board.boardNo);
-		stmt.setString(5, board.boardPw);
+		stmt.setString(1, board.getCategoryName());
+		stmt.setString(2, board.getBoardTitle());
+		stmt.setString(3, board.getBoardContent());
+		stmt.setInt(4, board.getBoardNo());
+		stmt.setString(5, board.getBoardPw());
 		System.out.println("selectBoardOneSql : " + stmt); // 디버깅
 		
 		row = stmt.executeUpdate(); // 몇행의 게시물을 수정했는지 저장
