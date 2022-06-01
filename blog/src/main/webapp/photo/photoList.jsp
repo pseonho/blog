@@ -2,6 +2,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="vo.*" %>
 <%@ page import="dao.*" %>
+<%@ page import="java.sql.*" %>
 <%
 	int beginRow = 0;
 	int rowPerPage = 10;
@@ -53,8 +54,8 @@
 					if(i<list.size()) {
 			%>
 						<td>
-							<a href="<%=request.getContextPath()%>/photo/selectPhotoOne.jsp=photoNo=<%=list.get(i).photoNo%>">
-								<img src="<%=request.getContextPath()%>/upload/<%=list.get(i).photoName%>" width="100" height="100">
+							<a href="<%=request.getContextPath()%>/photo/selectPhotoOne.jsp?photoNo=<%=list.get(i).getPhotoNo()%>">
+								<img src="<%=request.getContextPath()%>/upload/<%=list.get(i).getPhotoName()%>" width="100" height="100">
 								<!--  상세보기에서는 원본이미지 크기로 -->
 							</a>
 						</td>
@@ -67,7 +68,7 @@
 				}
 			%>
 		</tr>
-	</table>
+
 	<div>
 	<a class= "bt btn-primary float-right" href="<%=request.getContextPath()%>/photo/insertPhotoForm.jsp">사진 등록</a>
 	

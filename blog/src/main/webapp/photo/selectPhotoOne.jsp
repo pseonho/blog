@@ -8,11 +8,12 @@
 	Photo photo = photoDao.selectPhotoOne(photoNo);
 	
 	// 디버깅
-	System.out.println("상세보기 한 이미지 번호 : " + photo.photoNo);
-	System.out.println("상세보기 한 이미지 작성자 : " + photo.writer);
-	System.out.println("상세보기 한 pdf 이름 : " + photo.photoName);
-	System.out.println("상세보기 한 이미지 작성날짜 : " + photo.createDate);
-	System.out.println("상세보기 한 이미지 업데이트 날짜 : " + photo.updateDate);
+	System.out.println("상세보기 한 이미지 번호 : " + photoNo);
+	/*
+	System.out.println("상세보기 한 이미지 작성자 : " + writer);
+	System.out.println("상세보기 한 pdf 이름 : " + photoName);
+	System.out.println("상세보기 한 이미지 작성날짜 : " + createDate);
+	System.out.println("상세보기 한 이미지 업데이트 날짜 : " + updateDate);*/
 %>
 <!DOCTYPE html>
 <html>
@@ -31,23 +32,16 @@
 		<table class="table thead-dark table-bordered">
 			<tr>
 				<td>번호</td>
-				<td><%=photo.photoNo%></td>
+				<td><%=photo.getPhotoNo()%></td>
 				<td>작성자</td>
-				<td><%=photo.writer%></td>
-			</tr>
-			<tr>
-				<td colspan="4">
-					<img src="<%=request.getContextPath()%>/upload/<%=photo.photoName%>">
-				</td>
-			</tr>
-			<tr>
+				<td><%=photo.getWriter()%></td>
 				<td>작성날짜</td>
-				<td><%=photo.createDate%></td>
+				<td><%=photo.getCreateDate()%></td>
 				<td>수정날짜</td>
-				<td><%=photo.updateDate%></td>
+				<td><%=photo.getUpdateDate()%></td>
 			</tr>
 			<tr>
-				<td colspan="4"><a class = "btn btn-danger float-right" href="<%=request.getContextPath()%>/photo/deletePhotoForm.jsp?photoNo=<%=photo.photoNo%>">삭제</a></td>
+				<td colspan="4"><a class = "btn btn-danger float-right" href="<%=request.getContextPath()%>/photo/deletePhotoForm.jsp?photoNo=<%=photo.getPhotoNo()%>">삭제</a></td>
 			</tr>
 		</table>
 	</div>

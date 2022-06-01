@@ -156,7 +156,7 @@ public class PhotoDao {
 		return total;
 	}
 	
-	// 1개의 이미지 상세보기
+	//  이미지 상세보기
 	public Photo selectPhotoOne(int photoNo) throws Exception {
 		Photo photo = null; // 객체 생성 준비
 		
