@@ -14,7 +14,6 @@ public class PhotoDao {
 		return photoName;
 	}
 	//SELECT photo_name FROM photo
-		
 	
 	// 이미지 입력 코드
 	public void insertPhoto(Photo photo) throws Exception {
@@ -31,15 +30,7 @@ public class PhotoDao {
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw); 
 		
 		// SQL 쿼리를 문자열로 저장
-		String sql = 
-			"INSERT INTO photo(photo_name, photo_original_name, photo_type, photo_pw, writer, create_date, update_date) VALUES(?,?,?,?,?,NOW(),NOW())";
-		
-		// 데이터 생성
-		String photoName = photo.getPhotoName();
-		String photoOriginalName = photo.getPhotoOriginalName();
-		String photoType = photo.getPhotoType();
-		String photoPw = photo.getPhotoPw();
-		String writer = photo.getWriter();
+		String sql = "INSERT INTO photo(photo_name, photo_original_name, photo_type, photo_pw, writer, create_date, update_date) VALUES(?,?,?,?,?,NOW(),NOW())";
 		
 		// photo 쿼리를 저장
 		stmt = conn.prepareStatement(sql);
@@ -49,19 +40,8 @@ public class PhotoDao {
 		stmt.setString(4, photo.getPhotoPw());
 		stmt.setString(5, photo.getWriter());
 		
-		// 쿼리를 실행 후 결과값(테이블모양의 ResultSet타입)을 리턴
-		rs = stmt.executeQuery();
+		int row = stmt.executeUpdate();
 		
-		// DB 데이터 변환(가공)
-		if(rs.next()) { 
-			photoName = rs.getString("photo_name");
-			photoOriginalName = rs.getString("photo_original_name");
-			photoType = rs.getString("photo_type");
-			photoPw = rs.getString("photo_pw");
-			writer = rs.getString("writer");
-		}
-		// DB 자원들 반환, 종료
-		rs.close();
 		stmt.close();
 		conn.close();
 	}

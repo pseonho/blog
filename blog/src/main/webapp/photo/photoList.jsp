@@ -4,11 +4,29 @@
 <%@ page import="dao.*" %>
 <%@ page import="java.sql.*" %>
 <%
-	int beginRow = 0;
+	int currentPage = 1;
+	if(request.getParameter("currentPage")!=null){
+		currentPage = Integer.parseInt(request.getParameter("currentPage")); 
+	}
+
 	int rowPerPage = 10;
+	int beginRow =(currentPage-1)*rowPerPage;
 
 	PhotoDao photoDao = new PhotoDao();
 	ArrayList<Photo> list = photoDao.selectPhotoListByPage(beginRow, rowPerPage);
+	
+	int lastPage = 0;
+	int totalCount = photoDao.selectPhotoTotalRow();
+	/*
+	lastPage = totalCount / rowPerPage;
+	if(totalCount % rowPerPage != 0) {
+		lastPage++;
+	}
+	*/
+	lastPage = (int)(Math.ceil((double)totalCount / (double)rowPerPage)); 
+	// 4.0 / 2.0 = 2.0 -> 2.0
+	// 5.0 / 2.0 = 2.5 -> 3.0
+
 %>
 
 <!DOCTYPE html>
@@ -68,13 +86,25 @@
 				}
 			%>
 		</tr>
-
-	<div>
-	<a class= "bt btn-primary float-right" href="<%=request.getContextPath()%>/photo/insertPhotoForm.jsp">사진 등록</a>
-	
-	<a class= "bt btn-primary float-right" href="<%=request.getContextPath()%>/photo/deletePhotoForm.jsp">사진 삭제</a>
-	</div>
-	</div>
+		</table>
 		
-	</body>
+	<%	
+		 if(currentPage > 1) {
+	%>
+			<a href="<%=request.getContextPath()%>/photo/photoList.jsp?currentPage=<%=currentPage-1%>"><button type="button" class="btn-sm btn-outline-success">이전</button></a>
+	<%		
+		}
+		
+		if(currentPage < lastPage) {
+	%>
+			<a href="<%=request.getContextPath()%>/photo/photoList.jsp?currentPage=<%=currentPage+1%>"><button type="button" class="btn-sm btn-outline-success">다음</button></a>
+	<%
+		}
+	%>
+		</div>
+		</body>
+		
+			<a href="<%=request.getContextPath()%>/photo/insertPhotoForm.jsp"><button type="button" class="btn btn-outline-primary">사진등록</button></a>
+			<a href="<%=request.getContextPath()%>/photo/deletePhotoForm.jsp"><button type="button" class="btn btn-outline-primary">사진삭제</button></a>
+	
 	</html>

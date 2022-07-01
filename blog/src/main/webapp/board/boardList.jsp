@@ -14,8 +14,11 @@
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	}
 	System.out.println("currentPage : " + currentPage);
+	String categoryName = "";
+	if(request.getParameter("categoryName") != null) {
+		categoryName = request.getParameter("categoryName"); // 카테고리 받아오기	
+	}
 	
-	String categoryName = request.getParameter("categoryName"); // 카테고리 받아오기
 	// 페이지가 바뀔때 데이터도 변해야 함
 	/*
 		알고리즘
@@ -38,7 +41,7 @@
  	int lastPage = 0; // 마지막 페이지
  	int totalRow = 0; // 총 행의 갯수
  	
- 	if(categoryName == null) { // 사용자가 카테고리를 선택하지 않았을때
+ 	if(categoryName.equals("")) { // 사용자가 카테고리를 선택하지 않았을때
  		totalRow = boardDao.selectBoardTotalRow(); // 카테고리와 상관없이 모든 행의 갯수 저장
  	} else { // 사용자가 카테고리를 선택했을때
  		totalRow = boardDao.selectCategoryTotalRow(categoryName); // 카테고리별 행의 갯수 저장
@@ -117,37 +120,19 @@
 	
 	<div>
 		<!-- 페이지가 만약 10페이지였다면 이전을 누르면 9페이지, 다음을 누르면 11페이지 -->
-		<%
-			if(currentPage > 1) { // 현재페이지가 1이면 이전페이지가 존재해서는 안된다.
-				if(categoryName == null) {
-		%>
+	<%
+				if(currentPage > 1){ // 현재 페이지가 1보다 작으면 나오면 안된다. 
+			%>
 				<a href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage-1%>&categoryName=<%=categoryName%>">이전</a>
-		<%	
-				} else {
-		%>
-		<a href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage-1%>&categoryName=<%=categoryName%>">이전</a>
-		<%
-			 }
-			}
-		%>
-		<!--  
-			전체행			마지막 페이지 ? 
-			10개 				1
-			11,12,13 ~ 20		2
-			21 ~ 30				3
-			31 ~ 40				4
-			마지막 페이지 = 전체행 / rowPerPage
-		-->
-		<%
-			if(currentPage < lastPage) {
-				if(categoryName == null) {
-		%>
-				<a href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage+1%>&categoryName=<%=categoryName%>">다음</a>	
-		<%		
-			 }
-			}
-		%>
-	</div>
+			<%
+				}
+				if(currentPage <lastPage){
+			%>
+										<!-- 문자열은 null값을 넘길수 없다. -> 공백으로 처리한다. -->
+			<a href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage+1%>&categoryName=<%=categoryName%>">다음</a>
+			<%
+				}
+			%>
 	
 </body>
 	<div> <p class="text-right">

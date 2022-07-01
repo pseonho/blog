@@ -68,7 +68,7 @@
 				for(HashMap<String, Object> m : categoryList) {
 			%>
 					
-				<a href="<%=request.getContextPath()%>/boardList.jsp?categoryName=<%=m.get("categoryName")%>"><%=m.get("categoryName")%></a>
+				<a href="<%=request.getContextPath()%>/board/boardList.jsp?categoryName=<%=m.get("categoryName")%>"><%=m.get("categoryName")%></a>
 				<span class="badge badge-info badge-*">[<%=m.get("cnt")%>]</span>
 				
 			<%		
