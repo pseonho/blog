@@ -18,7 +18,7 @@
 	Connection conn = null;
 	String dburl = "jdbc:mariadb://localhost:3306/blog"; 
 	String dbuser = "root"; 
-	String dbpw = "java1234"; 
+	String dbpw = "mariadb1234"; 
 	conn = DriverManager.getConnection(dburl, dbuser, dbpw);
 	System.out.println(conn + " : conn결과");//디버깅
 	

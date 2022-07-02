@@ -26,7 +26,7 @@ public class BoardDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		String dburl = "jdbc:mariadb://13.125.175.213:80/blog"; // DB 주소
+		String dburl = "jdbc:mariadb://localhost:3306/blog"; // DB 주소
 		String dbuser = "root"; // DB 아이디
 		String dbpw = "mariadb1234"; // DB 패스워드
 		String sql = null;
@@ -82,7 +82,7 @@ public class BoardDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		String dburl = "jdbc:mariadb://13.125.175.213:80/blog"; // DB 주소
+		String dburl = "jdbc:mariadb://localhost:3306/blog"; // DB 주소
 		String dbuser = "root"; // DB 아이디
 		String dbpw = "mariadb1234"; // DB 패스워드
 		String sql = "SELECT category_name categoryName, COUNT(*) cnt FROM board GROUP BY category_name ORDER BY category_name";
@@ -119,7 +119,7 @@ public class BoardDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		String dburl = "jdbc:mariadb://13.125.175.213:80/blog"; // DB 주소
+		String dburl = "jdbc:mariadb://localhost:3306/blog"; // DB 주소
 		String dbuser = "root"; // DB 아이디
 		String dbpw = "mariadb1234"; // DB 패스워드
 		String sql = "SELECT board_no boardNo, category_name categoryName, board_title boardTitle, board_content boardContent, create_date createDate, update_date updateDate FROM board WHERE board_no=?";
@@ -159,7 +159,7 @@ public class BoardDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		String dburl = "jdbc:mariadb://13.125.175.213:80/blog"; // DB 주소
+		String dburl = "jdbc:mariadb://localhost:3306/blog"; // DB 주소
 		String dbuser = "root"; // DB 아이디
 		String dbpw = "mariadb1234"; // DB 패스워드
 		String sql = "INSERT INTO board(category_name, board_title, board_content, board_pw, create_date, update_date) VALUES(?, ?, ?, ?, NOW(), NOW())";
@@ -199,7 +199,7 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		
-		String dburl = "jdbc:mariadb://13.125.175.213:80/blog"; // DB 주소
+		String dburl = "jdbc:mariadb://localhost:3306/blog"; // DB 주소
 		String dbuser = "root"; // DB 아이디
 		String dbpw = "mariadb1234"; // DB 패스워드
 		String sql = "DELETE FROM board WHERE board_no=? AND board_pw=?";
@@ -230,7 +230,7 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		
-		String dburl = "jdbc:mariadb://13.125.175.213:80/blog"; // DB 주소
+		String dburl = "jdbc:mariadb://localhost:3306/blog"; // DB 주소
 		String dbuser = "root"; // DB 아이디
 		String dbpw = "mariadb1234"; // DB 패스워드
 		String sql = "UPDATE board SET category_name=?, board_title=?, board_content=? WHERE board_no=? AND board_pw=?";
@@ -260,7 +260,7 @@ public class BoardDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		String dburl = "jdbc:mariadb://13.125.175.213:80/blog"; // DB 주소
+		String dburl = "jdbc:mariadb://localhost:3306/blog"; // DB 주소
 		String dbuser = "root"; // DB 아이디
 		String dbpw = "mariadb1234"; // DB 패스워드
 		String sql = "SELECT COUNT(*) cnt FROM board";
@@ -293,7 +293,7 @@ public class BoardDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		String dburl = "jdbc:mariadb://13.125.175.213:80/blog"; // DB 주소
+		String dburl = "jdbc:mariadb://localhost:3306/blog"; // DB 주소
 		String dbuser = "root"; // DB 아이디
 		String dbpw = "mariadb1234"; // DB 패스워드
 		String sql = "SELECT COUNT(category_name) cnt FROM board WHERE category_name=?";
@@ -328,7 +328,7 @@ public class BoardDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		String dburl = "jdbc:mariadb://13.125.175.213:80/blog"; // DB 주소
+		String dburl = "jdbc:mariadb://localhost:3306/blog"; // DB 주소
 		String dbuser = "root"; // DB 아이디
 		String dbpw = "mariadb1234"; // DB 패스워드
 		String sql = "SELECT category_name categoryName FROM board GROUP BY category_name ORDER BY category_name asc";

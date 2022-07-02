@@ -26,7 +26,7 @@ public class PhotoDao {
 		// MySql RDBMS에 접속(IP주소, 접속계정 아이디, 패스워드)
 		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
-		String dbpw = "java1234";
+		String dbpw = "mariadb1234";
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw); 
 		
 		// SQL 쿼리를 문자열로 저장
@@ -58,7 +58,7 @@ public class PhotoDao {
 			// MySql RDBMS에 접속(IP주소, 접속계정 아이디, 패스워드)
 			String dburl = "jdbc:mariadb://localhost:3306/blog";
 			String dbuser = "root";
-			String dbpw = "java1234";
+			String dbpw = "mariadb1234";
 			conn = DriverManager.getConnection(dburl, dbuser, dbpw); 
 			
 			// SQL 쿼리를 문자열로 저장
@@ -89,7 +89,7 @@ public class PhotoDao {
 	      Connection conn = null;
 	      PreparedStatement stmt = null;
 	      ResultSet rs = null;
-	      conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/blog","root","java1234");
+	      conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/blog","root","mariadb1234");
 	      String sql = "SELECT photo_no photoNo, photo_name photoName FROM photo ORDER BY create_date DESC LIMIT ?,?";
 	      stmt = conn.prepareStatement(sql);
 	      stmt.setInt(1, beginRow);
@@ -117,7 +117,7 @@ public class PhotoDao {
 		
 		String dburl = "jdbc:mariadb://localhost:3306/blog"; // DB 주소
 		String dbuser = "root"; // DB 아이디
-		String dbpw = "java1234"; // DB 패스워드
+		String dbpw = "mariadb1234"; // DB 패스워드
 		String sql = "SELECT COUNT(*) cnt FROM photo";
 		
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw); // DB접속
@@ -149,7 +149,7 @@ public class PhotoDao {
 		
 		String dburl = "jdbc:mariadb://localhost:3306/blog"; // DB 주소
 		String dbuser = "root"; // DB 아이디
-		String dbpw = "java1234"; // DB 패스워드
+		String dbpw = "mariadb1234"; // DB 패스워드
 		String sql = "SELECT photo_no photoNo, photo_name photoName, writer, create_date createDate, update_date updateDate FROM photo WHERE photo_no=?";
 		
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw); // DB접속

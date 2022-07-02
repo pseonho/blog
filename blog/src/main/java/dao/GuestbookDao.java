@@ -16,7 +16,7 @@ public class GuestbookDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		String dburl = "jdbc:mariadb://13.125.175.213:80/blog";
+		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
 		String dbpw = "mariadb1234";
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
@@ -47,7 +47,7 @@ public class GuestbookDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		
-		String dburl = "jdbc:mariadb://13.125.175.213:80/blog";
+		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
 		String dbpw = "mariadb1234";
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw); 
@@ -76,7 +76,7 @@ public class GuestbookDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		
-		String dburl = "jdbc:mariadb://13.125.175.213:80/blog";
+		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
 		String dbpw = "mariadb1234";
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw); 
@@ -99,7 +99,7 @@ public class GuestbookDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		
-		String dburl = "jdbc:mariadb://13.125.175.213:80/blog";
+		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
 		String dbpw = "mariadb1234";
 		/* INSERT INTO guestbook(
@@ -131,7 +131,7 @@ public class GuestbookDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		String dburl = "jdbc:mariadb://13.125.175.213:80/blog";
+		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
 		String dbpw = "mariadb1234";
 		
@@ -157,7 +157,7 @@ public class GuestbookDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		String dburl = "jdbc:mariadb://13.125.175.213:80/blog";
+		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
 		String dbpw = "mariadb1234";
 		/*
